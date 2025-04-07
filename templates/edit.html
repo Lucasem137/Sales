@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Venda</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Editar Venda</h1>
+    <form action="/edit/{{ venda[0] }}" method="post">
+        <input type="text" name="produto" value="{{ venda[1] }}" required>
+        <input type="number" name="quantidade" value="{{ venda[2] }}" required>
+        <input type="text" name="preco" value="{{ venda[3] }}" required>
+        <input type="date" name="data" value="{{ venda[4] }}" required>
+        <button type="submit">Salvar Alterações</button>
+    </form>
+</body>
+</html>
