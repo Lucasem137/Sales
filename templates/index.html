@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Vendas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Registro de Vendas</h1>
+    <form action="/add" method="post">
+        <input type="text" name="produto" placeholder="Produto" required>
+        <input type="number" name="quantidade" placeholder="Quantidade" required>
+        <input type="text" name="preco" placeholder="Preço" required>
+        <input type="date" name="data" placeholder="Data" required>
+        <button type="submit">Adicionar Venda</button>
+    </form>
+    <form action="/filter" method="post">
+        <input type="text" name="produto" placeholder="Filtrar por Produto">
+        <input type="date" name="data" placeholder="Filtrar por Data">
+        <button type="submit">Aplicar Filtros</button>
+    </form>
+    <form action="/" method="get">
+        <button type="submit">Remover Filtros</button>
+    </form>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Preço</th>
+            <th>Data</th>
+            <th>Ações</th>
+        </tr>
+        {% for venda in vendas %}
+        <tr>
+            <td>{{ venda[0] }}</td>
+            <td>{{ venda[1] }}</td>
+            <td>{{ venda[2] }}</td>
+            <td>{{ venda[3] }}</td>
+            <td>{{ venda[4] }}</td>
+            <td>
+                <form action="/delete/{{ venda[0] }}" method="post" style="display:inline;">
+                    <button type="submit">Remover</button>
+                </form>
+                <a href="/edit/{{ venda[0] }}"><button type="button">Editar</button></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
